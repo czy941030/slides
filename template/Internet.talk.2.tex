@@ -1,0 +1,189 @@
+\documentclass[mathserif]{beamer}
+
+% 设置字体
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\setCJKmainfont{Hiragino Sans GB W3}
+\xeCJKsetup{
+  CJKspace = true,
+  CJKmath = true,
+  CheckSingle = true,
+  AutoFallBack = true,
+  AutoFakeBold = true,
+  AutoFakeSlant = true,
+  PunctStyle = kaiming,
+  AllowBreakBetweenPuncts = true
+}
+
+% 图片支持
+\usepackage{graphicx}
+
+% 主题
+\usetheme[hideothersubsections,left]{PaloAlto}
+\usecolortheme{seahorse}
+\setbeamercovered{transparent}	%设置遮盖透明
+%\logo{\includegraphics[height=1.4cm]{./logo.png}}
+
+
+\begin{document}
+
+\title{命名数据网络\thanks{powered by \XeLaTeX}\\Named Data Networking}
+\author{徐磊\thanks{\href{mailto:leopard.lie@gmail.com}{leopard.lie@gmail.com}}、张宇翔\thanks{\href{mailto:zz593141477@gmail.com}{zz593141477@gmail.com}}}
+\institute{清华大学·计算机科学与技术系·计33}
+\date{2014年4月}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSection{
+  \begin{frame}
+    \frametitle{摘要}
+    \tableofcontents[currentsection,hideothersubsections]
+  \end{frame}
+}
+
+\section{简介}
+\subsection{设计原则}
+\begin{frame}{设计原则}
+  基于对目前互联网优缺点的分析：
+  \begin{itemize}
+  \item 保留沙漏模型
+  \item 完善网络安全性
+  \item 保留和拓展端到端的原则
+  \item 网络流量的自控制
+  \item 保持路由策略与路由分离
+  \end{itemize}
+\end{frame}
+
+\subsection{一个例子}
+\begin{frame}{一个例子}
+  \begin{itemize}
+  \item<1> 用户想要获取数据/thu/doc/net.pdf
+  \item<2> 发送名为/thu/doc/net.pdf的兴趣包
+  \item<3> 路由器记下兴趣包来源的接口
+  \item<4> 在路由表中寻找最长前缀进行转发
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{一个例子}
+  \begin{itemize}
+  \item<1> 兴趣包到达有该数据的终端
+  \item<2> 名为/thu/doc/net.pdf的数据包被返回
+  \item<3> 根据路由器之前的记录来返回数据包
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{一个例子}
+  \begin{itemize}
+  \item 兴趣包和数据包都不包含主机和接口信息
+  \item 兴趣包根据它的名称来寻找主机
+  \item 路由器可以缓存兴趣包和数据包来提高效率
+  \end{itemize}
+\end{frame}
+
+\section{体系结构}
+\subsection{数据包}
+\begin{frame}{数据包}
+  \uncover<1-6>{}
+  \begin{columns}
+    \begin{column}[t]{0.5\textwidth}
+      兴趣包 Interest Pack
+      \begin{itemize}
+      \item 内容名 Content Name
+      \item 选择选项 Selector
+        \only<2>{
+          \begin{itemize}
+          \item 优选顺序\\ order preference
+          \item 发布者过滤\\ publisher filter
+          \item 选择范围\\ scope
+          \end{itemize}
+        }
+      \item 随机时间值 Nonce
+      \end{itemize}
+    \end{column}
+
+    \begin{column}[t]{0.5\textwidth}
+      数据包 Data Pack
+      \begin{itemize}
+      \item 内容名 Content Name
+      \item 签名 Signature
+        \only<4>{
+          \begin{itemize}
+          \item 摘要算法\\ digest algorithm
+          \item 证明\\ witness
+          \end{itemize}
+        }
+      \item 签署信息 Signed Info
+        \only<5>{
+          \begin{itemize}
+          \item 发布ID\\ publisher ID
+          \item 密钥定位\\ key locator
+          \item 失效时间\\ stale time
+          \end{itemize}
+        }
+      \item 数据 Data
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{命名}
+\begin{frame}{命名}
+  \begin{itemize}
+  \item 命名对于网络不透明（路由器不关心名称的含义）
+  \item 使用分层的结构化命名
+  \item 接收者必须能够构造所请求数据的命名
+  \item 双方约定命名算法、由部分名称构造（/parc/videos/abc.mpg -> /parc/videos/abc.mpg/1/1）
+  \end{itemize}
+\end{frame}
+
+\subsection{安全}
+\begin{frame}{安全}
+  \begin{itemize}
+  \item 构建在数据上的安全机制
+  \item 每条数据和名称都带有数字签名
+  \item 可以进一步扩展访问权限控制机制（签名中可以包含身份信息）
+  \item 挑战
+    \begin{itemize}
+    \item 类DoS的兴趣包洪水攻击
+    \item 内容污染攻击
+    \item 缓存、命名、签名的隐私保护
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{路由}
+\begin{frame}{路由}
+  \begin{itemize}
+    \item 路由表中匹配最长前缀转发
+    \item PIT缓存兴趣包
+    \item 数据包由原路径反向回传
+    \item 允许把一个请求向多个接口转发
+  \end{itemize}
+\end{frame}
+
+\subsection{缓存}
+\begin{frame}{缓存}
+  \begin{itemize}
+    \item 根据数据的名称，缓存曾经返回的数据包
+    \item 缓存中不包含请求者信息（现有的IP网络中，头会泄露信息）
+    \item 缓存策略（LRU、LFU）
+    \item 防止缓存污染
+  \end{itemize}
+\end{frame}
+
+\section{DEMO}
+\begin{frame}
+%\includegraphics[width = \textwidth]{pic.png}
+\end{frame}
+\AtBeginSection{}
+
+\section[End]{}
+\begin{frame}{End}
+  \color{blue}\huge{Thanks For Attention!}
+\end{frame}
+
+\end{document}
