@@ -14,6 +14,9 @@
 \usepackage{fontspec}
 \usepackage{xunicode}
 \usepackage{xltxtra}
+
+\usepackage{amsmath,amssymb}
+
 \setbeamercovered{transparent}
 \logo{\includegraphics[height=1.58cm]{./logo.jpg}}
 
@@ -33,6 +36,7 @@
 \date{\today}
 
 \begin{document}
+\newtheorem{property}[theorem]{\textsc{Property}}
 
 \begin{frame}
 \titlepage
@@ -45,8 +49,39 @@
 	\end{frame}
 }
 
-\section{Abstract}
-\begin{frame}{Abstract}
+\section{Overview}
+\begin{frame}{Overview}
+	\begin{itemize}
+	\item The main task: find \textit{the most frequent}(MFP) during user-specified time periods in large-scale historical trajectory data.
+	\item They refer to this query as \textit{time period-based MFP}(TPMFP).
+	\item Specifically, given a time peroid $T$, a source $v_s$ and a destination $v_d$, TPMFP searchs the MFP from $v_s$ to $v_d$ during $T$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Overview}
+	\begin{itemize}
+	\item None of the previous work can well reflect people's common sense notion which can be described by the following key properties:\\
+		\begin{itemize}
+		\item \textit{suffix-optimal}
+		\item \textit{length-insensitive}
+		\item \textit{bottleneck-free}
+		\end{itemize}
+	\item The first task is to give a TPMFP definition that satisfies the above three properties.
+	\item The next task is to find TPMFP over huge amount of trajectory data efficiently.(over $11,000,000$ trajectories.)
+	\end{itemize}
+\end{frame}
+
+\section{Key Properities}
+\begin{frame}{Key Properities}
+	\begin{property}[\textsc{Suffix-Optimal}]
+	Let $P^*$ denote the $v_S-v_d$ MFP. For any vertex $u \in P^*$ , the sub-path (suffix) of $P^*$ from $u$ to $v_d$ should be the $u–v_d$ MFP.
+	\end{property}
+	\begin{property}[\textsc{Length-Insensitive}]
+	The length of any path should not be a deciding factor of whether it is the $v_s-v_d$ MPF.
+	\end{property}
+	\begin{property}[\textsc{Bottleneck-Free}]
+	The MPF $P^*$ should not contain infrequent edges(i.e., bottlenecks).
+	\end{property}
 
 \end{frame}
 
