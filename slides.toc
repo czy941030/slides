@@ -1,3 +1,9 @@
-\beamer@endinputifotherversion {3.24pt}
+\beamer@endinputifotherversion {3.33pt}
 \beamer@sectionintoc {1}{Overview}{2}{0}{1}
-\beamer@sectionintoc {2}{Key Properities}{5}{0}{2}
+\beamer@sectionintoc {2}{Properities}{5}{0}{2}
+\beamer@sectionintoc {3}{Definations}{7}{0}{3}
+\beamer@sectionintoc {4}{Alogrithm}{15}{0}{4}
+\beamer@subsectionintoc {4}{1}{Overview Algorithm}{16}{0}{4}
+\beamer@subsectionintoc {4}{2}{Footmark Index}{17}{0}{4}
+\beamer@subsectionintoc {4}{3}{Containment-Based Footmark Index}{20}{0}{4}
+\beamer@subsectionintoc {4}{4}{MFP-Search}{27}{0}{4}
