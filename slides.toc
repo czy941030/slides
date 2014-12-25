@@ -7,3 +7,7 @@
 \beamer@subsectionintoc {4}{2}{Footmark Index}{17}{0}{4}
 \beamer@subsectionintoc {4}{3}{Containment-Based Footmark Index}{20}{0}{4}
 \beamer@subsectionintoc {4}{4}{MFP-Search}{27}{0}{4}
+\beamer@sectionintoc {5}{Experiment}{31}{0}{5}
+\beamer@subsectionintoc {5}{1}{Dataset \&{} Environment}{32}{0}{5}
+\beamer@subsectionintoc {5}{2}{Effectiveness}{33}{0}{5}
+\beamer@subsectionintoc {5}{3}{Effciency}{35}{0}{5}

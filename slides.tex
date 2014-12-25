@@ -50,7 +50,7 @@
 \AtBeginSection{
 	\begin{frame}
 	\frametitle{Summary}
-	\tableofcontents
+	\tableofcontents[currentsection, hideothersubsections]
 	\end{frame}
 }
 
@@ -127,10 +127,10 @@ Given $\Omega{} = (G, \Upsilon{}, v_s,v_d,T)$ and a trajectory $Y = ((x_1, t_1),
 \begin{frame}{Definations}
 
 \begin{defination}[\textsc{Edge Frequency}]
-Given $G$, $\widetilde{\Upsilon}_{(vd,T )}$, and an edge $(u, v) \in{} G$, the edge frequency $F (u, v)$ is the number of the footmarks in $\widetilde{\Upsilon}_{(vd,T )}$ containing$(u,v)$.
+Given $G$, $\widetilde{\Upsilon}_{(v_d,T )}$, and an edge $(u, v) \in{} G$, the edge frequency $F (u, v)$ is the number of the footmarks in $\widetilde{\Upsilon}_{(v_d,T )}$ containing$(u,v)$.
 \end{defination}
 \begin{defination}[\textsc{Footmark Graph}]
-Given $G$ and $\widetilde{\Upsilon}_{(vd,T )}$, a footmark graph $G_f$ is a weighted sub-graph of $G$ such that:
+Given $G$ and $\widetilde{\Upsilon}_{(v_d,T )}$, a footmark graph $G_f$ is a weighted sub-graph of $G$ such that:
 	\begin{itemize}
 	\item for any edge $(u,v) \in G$, $w_{uv} = F(u,v)$;
 	\item edge $(u,v)\in{}G_f$, if and only if $(u,v)\in{} G $and $w_{uv}>0 $.
@@ -161,12 +161,12 @@ Particularly, $F(P)$ is strictly-more-frequent-than $F(P')$, denoted
 as $F(P) \succ{} F(P')$, if $F(P) \succeq{} F(P')$ and $F(P) \neq{} F(P')$.
 \end{defination}
 
-\begin{theore}
-The more-frequent-than relation is a total order.
-\end{theore}
 \end{frame}
 
 \begin{frame}{Problem Statement}
+\begin{theore}
+The more-frequent-than relation is a total order.
+\end{theore}
 \begin{defination}[MPF]
 Given $G_f$ and a $v_s–v_d$ path $P_* \subseteq{} G_f$, if $F(P_*) \succeq{} F(P)$ holds for every $v_s–v_d$ path $P \subseteq{} G_f$, then $P_*$ is the $v_s–v_d$ MFP w.r.t. $G_f$.
 \end{defination}
@@ -295,6 +295,95 @@ F^*(v_s,i) = \max(F^*(v_s,i−1), \max_{(v_s,v) \in{} E_f} ((w_{v_sv})+F^*(v,i�
 \begin{figure}
 \includegraphics[width = 8cm]{alg4.png}
 \end{figure}
+\end{frame}
+
+\section{Experiment}
+
+\subsection[D\&{}E]{Dataset \&{} Environment}
+\begin{frame}{Dataset \&{} Environment}
+\begin{block}{Dataset}
+\begin{small}
+\begin{tabular}{|l|r|r|r|}
+\hline
+Dataset Name & No. of Trajectories & Total Length & Size (MB)\\
+\hline
+Year Dataset & 11,547,611 & 245,276,717 & 3,335\\
+\hline
+Month Dataset & 1,650,134 & 35,619,454 & 484\\
+\hline
+Day Dataset & 54,579 & 1,217,890 & 17\\
+\hline
+\end{tabular}
+\end{small}
+\end{block}
+
+
+\begin{block}{Environment}
+\begin{small}
+\begin{itemize}
+\item Intel(R) Xeon(R) E5506 CPU (2.13GHz)
+\item 12GB memory
+\item 10,000RPM sever-level hard disks
+\item Linux 2.6.32 x86\_64
+\item Jre 1.7.0\_4 64-Bit
+\end{itemize}
+\end{small}
+\end{block}
+\end{frame}
+
+
+\subsection{Effectiveness}
+\begin{frame}{Effectiveness}
+\begin{figure}
+\includegraphics[width = 6cm]{exp1.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Effectiveness}
+\begin{figure}
+\includegraphics[width = 6cm]{exp2.png}
+\end{figure}
+\end{frame}
+
+\subsection{Effciency}
+
+\begin{frame}{Index Creation and Size}
+\begin{block}{Index Creation}
+For Year Dataset, the index creation time of FMI and CFMI is 72 minutes and 127 minutes, respectively.\\
+\end{block}
+
+\begin{block}{Index Size}
+\begin{figure}
+\includegraphics[width = 5cm]{exp3.png}
+\end{figure}
+\end{block}
+\end{frame}
+
+\begin{frame}{Effciency of MFP-Search}
+\begin{figure}
+\includegraphics[width = 7cm]{exp4.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Effciency}
+\begin{figure}
+\includegraphics[width = 10cm]{exp5.png}
+\end{figure}
+\begin{figure}
+\includegraphics[width = 10cm]{exp6.png}
+\end{figure}
+\end{frame}
+
+\AtBeginSection{}
+
+\section[Q\&{}A]{}
+\begin{frame}{Q\&{}A}
+  \color{blue}\huge{Any Questions?}
+\end{frame}
+
+\section[End]{}
+\begin{frame}{End}
+  \color{blue}\huge{Thanks For Attention!}
 \end{frame}
 
 \end{document}

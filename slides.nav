@@ -75,8 +75,38 @@
 \headcommand {\beamer@framepages {29}{29}}
 \headcommand {\slideentry {4}{4}{4}{30/30}{MFP-Search}{0}}
 \headcommand {\beamer@framepages {30}{30}}
-\headcommand {\beamer@partpages {1}{30}}
-\headcommand {\beamer@subsectionpages {27}{30}}
+\headcommand {\sectionentry {5}{Experiment}{31}{Experiment}{0}}
 \headcommand {\beamer@sectionpages {15}{30}}
-\headcommand {\beamer@documentpages {30}}
-\headcommand {\def \inserttotalframenumber {30}}
+\headcommand {\beamer@subsectionpages {27}{30}}
+\headcommand {\slideentry {5}{0}{5}{31/31}{}{0}}
+\headcommand {\beamer@framepages {31}{31}}
+\headcommand {\beamer@subsectionentry {0}{5}{1}{32}{D\&{}E}}\headcommand {\beamer@subsectionpages {31}{31}}
+\headcommand {\slideentry {5}{1}{1}{32/32}{D\&{}E}{0}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\beamer@subsectionentry {0}{5}{2}{33}{Effectiveness}}\headcommand {\beamer@subsectionpages {32}{32}}
+\headcommand {\slideentry {5}{2}{1}{33/33}{Effectiveness}{0}}
+\headcommand {\beamer@framepages {33}{33}}
+\headcommand {\slideentry {5}{2}{2}{34/34}{Effectiveness}{0}}
+\headcommand {\beamer@framepages {34}{34}}
+\headcommand {\beamer@subsectionentry {0}{5}{3}{35}{Effciency}}\headcommand {\beamer@subsectionpages {33}{34}}
+\headcommand {\slideentry {5}{3}{1}{35/35}{Effciency}{0}}
+\headcommand {\beamer@framepages {35}{35}}
+\headcommand {\slideentry {5}{3}{2}{36/36}{Effciency}{0}}
+\headcommand {\beamer@framepages {36}{36}}
+\headcommand {\slideentry {5}{3}{3}{37/37}{Effciency}{0}}
+\headcommand {\beamer@framepages {37}{37}}
+\headcommand {\sectionentry {6}{Q\&{}A}{38}{Q\&{}A}{0}}
+\headcommand {\beamer@sectionpages {31}{37}}
+\headcommand {\beamer@subsectionpages {35}{37}}
+\headcommand {\slideentry {6}{0}{4}{38/38}{}{0}}
+\headcommand {\beamer@framepages {38}{38}}
+\headcommand {\sectionentry {7}{End}{39}{End}{0}}
+\headcommand {\beamer@sectionpages {38}{38}}
+\headcommand {\beamer@subsectionpages {38}{38}}
+\headcommand {\slideentry {7}{0}{5}{39/39}{}{0}}
+\headcommand {\beamer@framepages {39}{39}}
+\headcommand {\beamer@partpages {1}{39}}
+\headcommand {\beamer@subsectionpages {39}{39}}
+\headcommand {\beamer@sectionpages {39}{39}}
+\headcommand {\beamer@documentpages {39}}
+\headcommand {\def \inserttotalframenumber {39}}
