@@ -1,13 +1,13 @@
 \beamer@endinputifotherversion {3.33pt}
 \beamer@sectionintoc {1}{Overview}{2}{0}{1}
 \beamer@sectionintoc {2}{Properities}{5}{0}{2}
-\beamer@sectionintoc {3}{Definations}{7}{0}{3}
-\beamer@sectionintoc {4}{Alogrithm}{15}{0}{4}
-\beamer@subsectionintoc {4}{1}{Overview Algorithm}{16}{0}{4}
-\beamer@subsectionintoc {4}{2}{Footmark Index}{17}{0}{4}
-\beamer@subsectionintoc {4}{3}{Containment-Based Footmark Index}{20}{0}{4}
-\beamer@subsectionintoc {4}{4}{MFP-Search}{27}{0}{4}
-\beamer@sectionintoc {5}{Experiment}{31}{0}{5}
-\beamer@subsectionintoc {5}{1}{Dataset \&{} Environment}{32}{0}{5}
-\beamer@subsectionintoc {5}{2}{Effectiveness}{33}{0}{5}
-\beamer@subsectionintoc {5}{3}{Effciency}{35}{0}{5}
+\beamer@sectionintoc {3}{Definations}{8}{0}{3}
+\beamer@sectionintoc {4}{Alogrithm}{16}{0}{4}
+\beamer@subsectionintoc {4}{1}{Overview Algorithm}{17}{0}{4}
+\beamer@subsectionintoc {4}{2}{Footmark Index}{18}{0}{4}
+\beamer@subsectionintoc {4}{3}{Containment-Based Footmark Index}{21}{0}{4}
+\beamer@subsectionintoc {4}{4}{MFP-Search}{28}{0}{4}
+\beamer@sectionintoc {5}{Experiment}{32}{0}{5}
+\beamer@subsectionintoc {5}{1}{Dataset \&{} Environment}{33}{0}{5}
+\beamer@subsectionintoc {5}{2}{Effectiveness}{34}{0}{5}
+\beamer@subsectionintoc {5}{3}{Effciency}{36}{0}{5}
