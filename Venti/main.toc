@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{Outline}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Abstract}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Background}{3}{0}{1}
+\beamer@sectionintoc {2}{Venti}{7}{0}{2}
+\beamer@sectionintoc {3}{Data Organization{[}Organization{]}}{11}{0}{3}
+\beamer@sectionintoc {4}{Application Example}{16}{0}{4}
+\beamer@subsectionintoc {4}{1}{Vac}{17}{0}{4}

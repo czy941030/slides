@@ -1,0 +1,58 @@
+\documentclass[mathserif]{beamer}
+
+\mode<presentation> {
+	\usetheme{PaloAlto}
+	\usecolortheme{whale}
+}
+
+\usepackage{xeCJK}
+\setCJKmainfont{STKaiti}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+\usepackage{amsmath,amssymb}
+
+%\usepackage{syntonly}
+%\syntaxonly
+
+\setbeamercovered{transparent}
+%\logo{\includegraphics[height=1.58cm]{./logo.jpg}}
+
+\title[Venti]{Venti: a new approach to archival storage\thanks{powered by \XeLaTeX}}
+
+\author{Presented By: 陈子旸}
+\institute[FDU]
+{
+	Fudan University\\
+	\medskip
+	\textit{13307130148@fudan.edu.cn}
+}
+\date{\today}
+
+\begin{document}
+\newtheorem{property}[theorem]{\textsc{Property}}
+\newtheorem{defination}[theorem]{\textsc{Defination}}
+\newtheorem{theore}[theorem]{\textsc{Theorem}}
+\newtheorem{lemm}[theorem]{\textsc{Lemma}}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\AtBeginSection{
+	\begin{frame}
+	\frametitle{Outline}
+	\tableofcontents[currentsection, hideothersubsections]
+	\end{frame}
+}
+
+\include{pre}
+
+\end{document}
+
