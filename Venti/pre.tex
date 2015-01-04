@@ -1,6 +1,6 @@
-\section{Outline}\label{outline}
+\section{Overview}\label{overview}
 
-\subsection{Abstract}
+\subsection{Abstract}\label{abstract}
 
 \begin{frame}{Abstract}
 
@@ -29,9 +29,9 @@
   Duplicate copies of a block can be coalesced
 \end{itemize}
 
-\subsection{Background}
-
 \end{frame}
+
+\subsection{Background}\label{background}
 
 \begin{frame}{Archival Storage}
 
@@ -102,7 +102,7 @@
 
 \end{frame}
 
-\section{Venti}\label{venti}
+\subsection{Venti}\label{venti}
 
 \begin{frame}{Venti Archival Storage}
 
@@ -198,8 +198,7 @@
 
 \end{frame}
 
-\section{Data
-Organization{[}Organization{]}}\label{data-organizationorganization}
+\section[Organization]{Data Organization}\label{data-organization}
 
 \begin{frame}{Data Organization}
 
@@ -227,7 +226,7 @@ Organization{[}Organization{]}}\label{data-organizationorganization}
 
 \end{frame}
 
-\begin{frame}{DataOrganization}
+\begin{frame}{Data Organization}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -256,7 +255,7 @@ Organization{[}Organization{]}}\label{data-organizationorganization}
 
 \end{frame}
 
-\begin{frame}{DataOrganization}
+\begin{frame}{Data Organization}
 
 \begin{figure}
 \includegraphics[width = 8cm]{pic2.png}
@@ -278,11 +277,11 @@ Organization{[}Organization{]}}\label{data-organizationorganization}
   \begin{itemize}
   \itemsep1pt\parskip0pt\parsep0pt
   \item
-    With vac, Selected files will be stored as a tree of blocks on Venti
-    server.
+    With vac, Selected files will be stored as \newline{} a tree of
+    blocks on Venti server.
   \item
-    The output is always 45 bytes long, included a 20 byte root
-    fingerprint.
+    The output is always 45 bytes long,\newline{} included a 20 byte
+    root fingerprint.
   \item
     `unvac' enables user to estore files from a vac archive.
   \end{itemize}
@@ -291,6 +290,187 @@ Organization{[}Organization{]}}\label{data-organizationorganization}
   can coalesce duplicate copies of a file
 \item
   Incremental backups options can improve performance
+\end{itemize}
+
+\subsection[Phy Bak]{Physical Backup}
+
+\end{frame}
+
+\begin{frame}{Physical Backup}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Vac archive data at the file or logical level
+\item
+  Alternative approach: block-level or physical backup
+\item
+  Copy the raw contents of disk drives to Venti
+\item
+  Coalescing duplicate blocks is the main advantage
+\item
+  Can even mount a backup file system image from Venti
+\item
+  Full restore can be done in a lazy fashing
+\end{itemize}
+
+\subsection[Plan 9]{Plan 9 File System}
+
+\end{frame}
+
+\begin{frame}{Plan 9 File System}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  When combined with a small amount of read/write storage, Venti can be
+  used as the primary location for data
+\item
+  Plan 9 file system store snapshot on optical jukebox
+\item
+  magnetic disks act as a cache for the jukebox
+\item
+  New version of the Plan 9 file system uses Venti instead of an optical
+  jukebox as its storage device
+\end{itemize}
+
+\end{frame}
+
+\section[Implement]{Implementation}\label{implementation}
+
+\begin{frame}{Implementation}
+
+\begin{figure}
+\includegraphics[width = 9cm]{pic3.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Implementation}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  For data block
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Use Append-only log
+  \item
+    Blocks store on a RAID－5 array of IDE disk drives
+  \end{itemize}
+\item
+  For Index
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Using a disk-resident hash table
+  \item
+    Index is diveided into fixed-size buckets
+  \item
+    Index store on 8 SCSI drives
+  \end{itemize}
+\item
+  Additional work
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    caching, striping, write buffering
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Format of Data Log}
+
+\begin{figure}
+\includegraphics[width = 9cm]{pic4.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Format of Index}
+
+\begin{figure}
+\includegraphics[width = 9cm]{pic5.png}
+\end{figure}
+
+\end{frame}
+
+\section{Performance}\label{performance}
+
+\begin{frame}{Performance}
+
+The performance of read and write in Mbytes/s :
+
+\begin{figure}
+
+\begin{tabular}{lcccc}
+\hline
+           &   sequential  &  random  &  virgin  & duplicate \\
+           &      reads    &  reads   &  writes  &   writes \\
+\hline
+uncached      &    0.9        &       0.4    &     3.7      &      5.6 \\
+index cache   &    4.2        &       0.7    &      -         &    6.2 \\
+block cache   &    6.8        &        -     &      -         &    6.5 \\
+raw raid      &    14.8       &       1.0    &     12.4     &     12.4 \\
+\hline
+\end{tabular}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Performance}
+
+\begin{figure}
+\includegraphics[width = 10cm]{pic6.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Performance}
+
+The percentage reduction in the size of data stored on Venti :
+
+\begin{figure}
+\begin{tabular}{lcc}
+\hline
+&bootes &emelie \\
+\hline
+Elimination of duplicates & 27.8\% & 31.3\% \\
+Elimination of fragments & 10.2\% & 25.4\% \\
+Data Compression & 33.8\% & 54.1\% \\
+Total Reduction & 59.7\% & 76.5\% \\
+\hline
+\end{tabular}
+\end{figure}
+
+\end{frame}
+
+\section{Conclusion}\label{conclusion}
+
+\begin{frame}{Conclusion}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Approach of identifying a block by SHA-1 hash is a well suited to
+  archival storage
+\item
+  Write-once policy of a block and ability to coalesce duplicate copies
+  of a block makes Venti a useful building block for many interesting
+  storage application
+\item
+  By rapid groth in capacity of magnetic disks, it seems unlikely that
+  archival data will be deleted to reclaim space
+
+  \begin{center}
+  $\Downarrow{}$\\
+  Venti provides an attractive approach to archive data
+  \end{center}
 \end{itemize}
 
 \end{frame}
