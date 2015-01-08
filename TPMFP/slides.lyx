@@ -1,0 +1,3821 @@
+#LyX file created by tex2lyx 2.1
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+
+
+\mode<presentation> {
+	\usetheme{PaloAlto}
+	\usecolortheme{whale}
+}
+
+
+%\usepackage{xeCJK}
+%\setCJKmainfont{WenQuanYi Micro Hei}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+
+
+
+\setbeamercovered{transparent}
+\logo{\includegraphics[height=1.58cm]{./logo.jpg}}
+
+%----------------------------------------------------------
+%	Title Page
+%----------------------------------------------------------
+
+\title[Finding TPMFP in BTD]{Finding Time Period-Based Most Frequent Path in Big Trajectory Data\thanks{powered by \XeLaTeX} }
+
+\author{Ziyang Chen}
+\institute[FDU]
+{
+	Fudan University\\
+	\medskip
+	\textit{13307130148@fudan.edu.cn}
+}
+\date{\today}
+
+
+\end_preamble
+\options mathserif
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+newtheorem{property}[theorem]{
+\end_layout
+
+\end_inset
+
+
+\shape smallcaps
+Property
+\shape default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+newtheorem{defination}[theorem]{
+\end_layout
+
+\end_inset
+
+
+\shape smallcaps
+Defination
+\shape default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+newtheorem{theore}[theorem]{
+\end_layout
+
+\end_inset
+
+
+\shape smallcaps
+Theorem
+\shape default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+newtheorem{lemm}[theorem]{
+\end_layout
+
+\end_inset
+
+
+\shape smallcaps
+Lemma
+\shape default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+titlepage
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+AtBeginSection
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout FrameTitle
+Summary
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+[currentsection, hideothersubsections] 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Overview
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Overview
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The main task: find 
+\shape italic
+the most frequent
+\shape default
+(MFP) during user-specified time periods in large-scale historical trajectory data. 
+\end_layout
+
+\begin_layout Itemize
+They refer to this query as 
+\shape italic
+time period-based MFP
+\shape default
+(TPMFP). 
+\end_layout
+
+\begin_layout Itemize
+Specifically, given a time peroid 
+\begin_inset Formula $T$
+\end_inset
+
+, a source 
+\begin_inset Formula $v_s$
+\end_inset
+
+ and a destination 
+\begin_inset Formula $v_d$
+\end_inset
+
+, TPMFP searchs the MFP from 
+\begin_inset Formula $v_s$
+\end_inset
+
+ to 
+\begin_inset Formula $v_d$
+\end_inset
+
+ during 
+\begin_inset Formula $T$
+\end_inset
+
+. 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Overview
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+None of the previous work can well reflect people's common sense notion which can be described by the following key properties:
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+suffix-optimal
+\shape default
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+length-insensitive
+\shape default
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+bottleneck-free
+\shape default
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The first task is to give a TPMFP definition that satisfies the above three properties. 
+\end_layout
+
+\begin_layout Itemize
+The next task is to find TPMFP over huge amount of trajectory data efficiently.(over 
+\begin_inset Formula $11,000,000$
+\end_inset
+
+ trajectories.) 
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Properities
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Key Properities
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{property}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Suffix-Optimal
+\shape default
+] Let 
+\begin_inset Formula $P^*$
+\end_inset
+
+ denote the 
+\begin_inset Formula $v_s-v_d$
+\end_inset
+
+ MFP. For any vertex 
+\begin_inset Formula $u \in P^*$
+\end_inset
+
+ , the sub-path (suffix) of 
+\begin_inset Formula $P^*$
+\end_inset
+
+ from 
+\begin_inset Formula $u$
+\end_inset
+
+ to 
+\begin_inset Formula $v_d$
+\end_inset
+
+ should be the 
+\begin_inset Formula $u–v_d$
+\end_inset
+
+ MFP. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{property}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{property}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Length-Insensitive
+\shape default
+] The length of any path should not be a deciding factor of whether it is the 
+\begin_inset Formula $v_s-v_d$
+\end_inset
+
+ MFP. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{property}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{property}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Bottleneck-Free
+\shape default
+] The MFP 
+\begin_inset Formula $P^*$
+\end_inset
+
+ should not contain infrequent edges(i.e., bottlenecks). 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{property}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Key Properties
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename pro.png
+	width 8cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Definations
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Definations
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Road Network
+\shape default
+] A road network is a directed graph 
+\begin_inset Formula $G = (V, E)$
+\end_inset
+
+ where 
+\begin_inset Formula $V$
+\end_inset
+
+ is a set of vertices representing road intersections and 
+\begin_inset Formula $E$
+\end_inset
+
+ is a set of edges representing road segments. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Path
+\shape default
+] Given 
+\begin_inset Formula $G$
+\end_inset
+
+, an 
+\begin_inset Formula $x_1–x_k$
+\end_inset
+
+ path is a non-empty graph 
+\begin_inset Formula $P = (V_p, E_p)$
+\end_inset
+
+ of the form 
+\begin_inset Formula $Vp = {x_1, x_2,\ldots{}, x_k}$
+\end_inset
+
+ and 
+\begin_inset Formula $E_p = {(x_1, x_2),\ldots , (x_{k−1}, x_k)}$
+\end_inset
+
+ such that 
+\begin_inset Formula $P$
+\end_inset
+
+ is a sub-graph of 
+\begin_inset Formula $G$
+\end_inset
+
+ and the 
+\begin_inset Formula $x_i$
+\end_inset
+
+ are all distinct. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Trajectory
+\shape default
+] Given 
+\begin_inset Formula $G$
+\end_inset
+
+, a trajectory 
+\begin_inset Formula $Y$
+\end_inset
+
+ is a sequence 
+\begin_inset Formula $((x_1, t_1), (x_2, t_2), \ldots , (x_k, t_k))$
+\end_inset
+
+ such that there exists a path 
+\begin_inset Formula $x_1 \to{} x_2,\to{},\dots,\to{} x_k$
+\end_inset
+
+ on 
+\begin_inset Formula $G$
+\end_inset
+
+ and 
+\begin_inset Formula $t_i$
+\end_inset
+
+ is a timestamp indicating the time when 
+\begin_inset Formula $Y$
+\end_inset
+
+ passes 
+\begin_inset Formula $x_i$
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Definations
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Footmark
+\shape default
+] Given 
+\begin_inset Formula $\Omega{} = (G, \Upsilon{}, v_s,v_d,T)$
+\end_inset
+
+ and a trajectory 
+\begin_inset Formula $Y = ((x_1, t_1), \ldots{} , (x_k, t_k)) \in{} \Upsilon{}$
+\end_inset
+
+, if there exists a non-empty sub-trajectory 
+\begin_inset Formula $Y'$
+\end_inset
+
+ of 
+\begin_inset Formula $Y$
+\end_inset
+
+ from 
+\begin_inset Formula $Y[i]$
+\end_inset
+
+ to 
+\begin_inset Formula $Y[j]$
+\end_inset
+
+ such that:
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\begin_inset Formula $Y'.d = v_d, i.e., Y'[j].v=v_d,$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset Formula $[Y'.t_s,Y'.t_e]\subseteq{} T,i.e.,[Y[i].t,Y[j].t]\subseteq{} T,$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset Formula $Y[i−1].t\notin{} T$
+\end_inset
+
+,if 
+\begin_inset Formula $i>1$
+\end_inset
+
+, 
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+then path 
+\begin_inset Formula $Y'.P$
+\end_inset
+
+ is the footmark of 
+\begin_inset Formula $Y$
+\end_inset
+
+ w.r.t. 
+\begin_inset Formula $v_d$
+\end_inset
+
+ and 
+\begin_inset Formula $T$
+\end_inset
+
+ , denoted as 
+\begin_inset Formula $\widetilde{Y}􏰀 (v_d ,T)$
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Definations
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename pic1.png
+	width 4cm
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename pic2.png
+	width 4cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename pic3.png
+	width 5cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Definations
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Edge Frequency
+\shape default
+] Given 
+\begin_inset Formula $G$
+\end_inset
+
+, 
+\begin_inset Formula $\widetilde{\Upsilon}_{(v_d,T )}$
+\end_inset
+
+, and an edge 
+\begin_inset Formula $(u, v) \in{} G$
+\end_inset
+
+, the edge frequency 
+\begin_inset Formula $F (u, v)$
+\end_inset
+
+ is the number of the footmarks in 
+\begin_inset Formula $\widetilde{\Upsilon}_{(v_d,T )}$
+\end_inset
+
+ containing
+\begin_inset Formula $(u,v)$
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Footmark Graph
+\shape default
+] Given 
+\begin_inset Formula $G$
+\end_inset
+
+ and 
+\begin_inset Formula $\widetilde{\Upsilon}_{(v_d,T )}$
+\end_inset
+
+, a footmark graph 
+\begin_inset Formula $G_f$
+\end_inset
+
+ is a weighted sub-graph of 
+\begin_inset Formula $G$
+\end_inset
+
+ such that: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+for any edge 
+\begin_inset Formula $(u,v) \in G$
+\end_inset
+
+, 
+\begin_inset Formula $w_{uv} = F(u,v)$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+edge 
+\begin_inset Formula $(u,v)\in{}G_f$
+\end_inset
+
+, if and only if 
+\begin_inset Formula $(u,v)\in{} G $
+\end_inset
+
+and 
+\begin_inset Formula $w_{uv}>0 $
+\end_inset
+
+. 
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Definations
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+Path Frequency
+\shape default
+] Given 
+\begin_inset Formula $G_f$
+\end_inset
+
+ , the frequency of path 
+\begin_inset Formula $P (to \; v_d)$
+\end_inset
+
+ is a sequence 
+\begin_inset Formula $F(P) = (f_1,...,f_k)$
+\end_inset
+
+ where: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\begin_inset Formula $\{f_i|i \in{} {1,\ldots{},k}\} = \{w_{uv}|(u,v) \in{} E(P)\}$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset Formula $f_1 \leq{} f_2 \leq{} \ldots{} \leq{} f_k$
+\end_inset
+
+. 
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Definations
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\shape smallcaps
+More-Frequent-Than Relation
+\shape default
+] Given two path frequencies 
+\begin_inset Formula $F(P) = (f_1,\dots{},f_m)$
+\end_inset
+
+ and 
+\begin_inset Formula $F(P') = (f_1',\ldots{},f_n' )$
+\end_inset
+
+ w.r.t. the same 
+\begin_inset Formula $G_f$
+\end_inset
+
+ , 
+\begin_inset Formula $F (P )$
+\end_inset
+
+ is more-frequent-than 
+\begin_inset Formula $F (P')$
+\end_inset
+
+, denoted as 
+\begin_inset Formula $F (P ) \succeq{} F (P' )$
+\end_inset
+
+, if one of the following statements holds: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\begin_inset Formula $F(P)$
+\end_inset
+
+ is a prefix of 
+\begin_inset Formula $F(P')$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+there exists a 
+\begin_inset Formula $q \in{} \{1,\ldots{},min(m,n)\}$
+\end_inset
+
+ such that 1) 
+\begin_inset Formula $f_i = f_i'$
+\end_inset
+
+ for all 
+\begin_inset Formula $i \in{}\{1,\ldots{},q−1\}$
+\end_inset
+
+, if 
+\begin_inset Formula $q>1$
+\end_inset
+
+, and 2) 
+\begin_inset Formula $f_q >f_q'$
+\end_inset
+
+. 
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+Particularly, 
+\begin_inset Formula $F(P)$
+\end_inset
+
+ is strictly-more-frequent-than 
+\begin_inset Formula $F(P')$
+\end_inset
+
+, denoted as 
+\begin_inset Formula $F(P) \succ{} F(P')$
+\end_inset
+
+, if 
+\begin_inset Formula $F(P) \succeq{} F(P')$
+\end_inset
+
+ and 
+\begin_inset Formula $F(P) \neq{} F(P')$
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Problem Statement
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{theore}
+\end_layout
+
+\end_inset
+
+ The more-frequent-than relation is a total order. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{theore}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[MPF] Given 
+\begin_inset Formula $G_f$
+\end_inset
+
+ and a 
+\begin_inset Formula $v_s–v_d$
+\end_inset
+
+ path 
+\begin_inset Formula $P_* \subseteq{} G_f$
+\end_inset
+
+, if 
+\begin_inset Formula $F(P_*) \succeq{} F(P)$
+\end_inset
+
+ holds for every 
+\begin_inset Formula $v_s–v_d$
+\end_inset
+
+ path 
+\begin_inset Formula $P \subseteq{} G_f$
+\end_inset
+
+, then 
+\begin_inset Formula $P_*$
+\end_inset
+
+ is the 
+\begin_inset Formula $v_s–v_d$
+\end_inset
+
+ MFP w.r.t. 
+\begin_inset Formula $G_f$
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Problem Statement:
+\series default
+ Given 
+\begin_inset Formula $\Omega{} = (G, \Upsilon{}, v_s, v_d, T )$
+\end_inset
+
+ where 
+\begin_inset Formula $\Upsilon{}$
+\end_inset
+
+ is a very large set of historical trajectories, we need to find the TPMFP which is the MFP w.r.t. 
+\begin_inset Formula $G_f$
+\end_inset
+
+ . Note that 
+\begin_inset Formula $G_f$
+\end_inset
+
+ is the footmark graph derived from 
+\begin_inset Formula $\Omega$
+\end_inset
+
+. 
+\end_layout
+
+\begin_layout Section
+Alogrithm
+\end_layout
+
+\begin_layout Subsection
+Overview Algorithm
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Overview Algorithm
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename alg1.png
+	width 10cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{theore}
+\end_layout
+
+\end_inset
+
+ Given 
+\begin_inset Formula $\Omega{} = (G, \Upsilon{}, v_s, v_d, T )$
+\end_inset
+
+, let 
+\begin_inset Formula $P_*$
+\end_inset
+
+ be the 
+\begin_inset Formula $v_s–v_d$
+\end_inset
+
+ TPMFP w.r.t. 
+\begin_inset Formula $\Omega$
+\end_inset
+
+. Then, for every vertex 
+\begin_inset Formula $u \in{} V (P )$
+\end_inset
+
+, the sub-path of 
+\begin_inset Formula $P_*$
+\end_inset
+
+ from 
+\begin_inset Formula $u$
+\end_inset
+
+ to 
+\begin_inset Formula $v_d$
+\end_inset
+
+ is the 
+\begin_inset Formula $u–v_d$
+\end_inset
+
+ TPMFP. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{theore}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+FMI
+\end_layout
+
+\end_inset
+
+Footmark Index
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ They design an index called Footmark Index (FMI): 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Build a 
+\begin_inset Formula $B^+ - tree \; BT_{v_i}$
+\end_inset
+
+ for each vertex 
+\begin_inset Formula $v_i \in{} V (G)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset Formula $BT_{v_i}$
+\end_inset
+
+ indexes the time of the trajectories reaching 
+\begin_inset Formula $v_i$
+\end_inset
+
+ and stores the corresponding trajectory id’s 
+\end_layout
+
+\begin_layout Itemize
+Each leaf entry of 
+\begin_inset Formula $BT_{v_i}$
+\end_inset
+
+ is of the form 
+\begin_inset Formula $<tid,t_a>$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Given 
+\begin_inset Formula $v_d$
+\end_inset
+
+ and T , FMI-Search
+\begin_inset Formula $(v_d , T )$
+\end_inset
+
+ returns the id’s of all the trajectories in 
+\begin_inset Formula $\Upsilon{}(v_d,T )$
+\end_inset
+
+ via searching 
+\begin_inset Formula $BT_{v_d}$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename FMI.png
+	width 10cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename alg2.png
+	width 10cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+CMFI
+\end_layout
+
+\end_inset
+
+Containment-Based Footmark Index
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Containment-Based Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+FMI incurs 
+\begin_inset Formula $|\Upsilon(v_d,T)|$
+\end_inset
+
+ page accesses 
+\end_layout
+
+\begin_layout Itemize
+Organizing the involved trajectories into different groups 
+\end_layout
+
+\begin_layout Itemize
+In each group, the front part of each trajectory Y before reaching 
+\begin_inset Formula $v_d$
+\end_inset
+
+ (including 
+\begin_inset Formula $v_d$
+\end_inset
+
+), denoted as 
+\begin_inset Formula $Y_{*–v_d}$
+\end_inset
+
+ , is 'contained' by a unique 'dominant' trajectory 
+\end_layout
+
+\begin_layout Itemize
+Only need to fetch the 'dominant' trajectory 
+\end_layout
+
+\begin_layout Itemize
+They refer to this new index as Containment-Based Footmark Index (CFMI) 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Containment-Based Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\begin_inset Formula $v_d$
+\end_inset
+
+-
+\shape smallcaps
+Containment
+\shape default
+] For two trajectories 
+\begin_inset Formula $Y$
+\end_inset
+
+ and 
+\begin_inset Formula $Y'$
+\end_inset
+
+ in 
+\begin_inset Formula $\Upsilon{}_{v_d}$
+\end_inset
+
+ , if 
+\begin_inset Formula $Y_{*–v_d}.P$
+\end_inset
+
+ is a sub-path of 
+\begin_inset Formula $Y'_{*-v_d}.P$
+\end_inset
+
+, then 
+\begin_inset Formula $Y$
+\end_inset
+
+ is 
+\begin_inset Formula $v_d$
+\end_inset
+
+-contained by 
+\begin_inset Formula $Y'$
+\end_inset
+
+. In particular, if 
+\begin_inset Formula $Y_{*–v_d}.P \neq{} Y'_{*-v_d}.P $
+\end_inset
+
+, then 
+\begin_inset Formula $Y$
+\end_inset
+
+ is stickly 
+\begin_inset Formula $v-d$
+\end_inset
+
+-contained by 
+\begin_inset Formula $Y'$
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{defination}
+\end_layout
+
+\end_inset
+
+[
+\begin_inset Formula $v_d$
+\end_inset
+
+-
+\shape smallcaps
+Dominant
+\shape default
+] A trajectory 
+\begin_inset Formula $Y \in{} \Upsilon{}_{v_d}$
+\end_inset
+
+ is 
+\begin_inset Formula $v_d$
+\end_inset
+
+-dominant if there exists no 
+\begin_inset Formula $Y' \in{} Υ_{v_d}$
+\end_inset
+
+ such that 
+\begin_inset Formula $Y$
+\end_inset
+
+ is strictly 
+\begin_inset Formula $v_d$
+\end_inset
+
+-contained by 
+\begin_inset Formula $Y'$
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{defination}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Containment-Based Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+CFMI improves the structure of each 
+\begin_inset Formula $B^+-tree$
+\end_inset
+
+ in FMI. Specifically, each leaf entry of 
+\begin_inset Formula $BT_{v_i}$
+\end_inset
+
+ is in the following new form: 
+\begin_inset Formula $<tid,t_s,t_a,did,sloc>$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Besides, we keep a table 
+\begin_inset Formula $v_i-Dom$
+\end_inset
+
+ for each 
+\begin_inset Formula $BT_{v_i}$
+\end_inset
+
+ , in which we record the length of 
+\begin_inset Formula $Y_{*–v_i}.P$
+\end_inset
+
+ for each 
+\begin_inset Formula $v_i$
+\end_inset
+
+-dominant trajectory 
+\begin_inset Formula $Y$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Containment-Based Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ For each query 
+\begin_inset Formula $(v_i, T)$
+\end_inset
+
+, CFMI-Search returns two sets: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\begin_inset Formula $TRREC =\{(tid, t_s , did, sloc)\}$
+\end_inset
+
+, which records the information of trajectories in 
+\begin_inset Formula $\Upsilon{}(v_d ,T )$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\begin_inset Formula $DOM = \{(did, len)\}$
+\end_inset
+
+, which records the did’s appeared in TRREC and their corresponding values in 
+\begin_inset Formula $v_i - Dom$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Containment-Based Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename CFMI.png
+	width 10cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Containment-Based Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename alg3_1.png
+	width 10cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Containment-Based Footmark Index
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename alg3_2.png
+	width 10cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+MFP-Search
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+MFP-Search
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{lemm}
+\end_layout
+
+\end_inset
+
+ Let 
+\begin_inset Formula $u \leadsto{} v$
+\end_inset
+
+ denote a path from u to v. Suppose 
+\begin_inset Formula $P^c =v_s \leadsto{} 􏰁v_k \leadsto{} v_k \leadsto{} 􏰁v_d$
+\end_inset
+
+ is a path with cycles on 
+\begin_inset Formula $G_f$
+\end_inset
+
+. We have 
+\begin_inset Formula $F (P ) \succ{} F (P^c )$
+\end_inset
+
+, where 
+\begin_inset Formula $P$
+\end_inset
+
+ is the resulting path after removing the portion of 
+\begin_inset Formula $P^c$
+\end_inset
+
+ between consecutive visits to 
+\begin_inset Formula $v_k$
+\end_inset
+
+. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{lemm}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{lemm}
+\end_layout
+
+\end_inset
+
+ Given 
+\begin_inset Formula $G_f$
+\end_inset
+
+ w.r.t. 
+\begin_inset Formula $\Omega{}$
+\end_inset
+
+, there exists an MFP from 
+\begin_inset Formula $v_s$
+\end_inset
+
+ to 
+\begin_inset Formula $v_d$
+\end_inset
+
+ that is simple, i.e., has at most 
+\begin_inset Formula $|V_f| − 1$
+\end_inset
+
+ edges. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{lemm}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+MFP-Search
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ Define '+' as follows: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If the two inputs are non-decreasing sequences of positive integers, "+" merges them into a non-decreasing sequence. For example: 
+\begin_inset Formula $(20) + (5, 20) = (5, 20, 20)$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+If one input is 
+\begin_inset Formula $\emptyset{}$
+\end_inset
+
+, then the other input is returned. If both inputs are 
+\begin_inset Formula $\emptyset{}$
+\end_inset
+
+’s, then 
+\begin_inset Formula $\emptyset{}$
+\end_inset
+
+ is returned. For example: 
+\begin_inset Formula $\emptyset{} + (5, 20) = (5, 20)$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+If one input is 
+\begin_inset Formula $\#$
+\end_inset
+
+, then 
+\begin_inset Formula $\#$
+\end_inset
+
+ is returned. For example: 
+\begin_inset Formula $\# + (5, 20) = \#$
+\end_inset
+
+. 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+MFP-Search
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ Let 
+\begin_inset Formula $F^*(v_s, i)$
+\end_inset
+
+ be the frequency of the 
+\begin_inset Formula $v_s–v_d$
+\end_inset
+
+ MFP
+\begin_inset Newline newline
+\end_inset
+
+ using at most i edges. 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{lemm}
+\end_layout
+
+\end_inset
+
+ Given 
+\begin_inset Formula $G_f = (V_f,E_f)$
+\end_inset
+
+, if 
+\begin_inset Formula $i > 0$
+\end_inset
+
+, then we have 
+\begin_inset Formula \begin{displaymath}
+F^*(v_s,i) = \max(F^*(v_s,i−1), \max_{(v_s,v) \in{} E_f} ((w_{v_sv})+F^*(v,i−1))).
+\end{displaymath}
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{lemm}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+MFP-Search
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename alg4.png
+	width 8cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Experiment
+\end_layout
+
+\begin_layout Subsection
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+D&
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{}
+\end_layout
+
+\end_inset
+
+E
+\end_layout
+
+\end_inset
+
+Dataset &
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{}
+\end_layout
+
+\end_inset
+
+ Environment
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Dataset &
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{}
+\end_layout
+
+\end_inset
+
+ Environment
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+Dataset
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{small}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Tabular 
+<lyxtabular version="3" rows="4" columns="4">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Dataset Name 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+No. of Trajectories 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Total Length 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Size (MB)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Year Dataset 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+11,547,611 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+245,276,717 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3,335
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Month Dataset 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1,650,134 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+35,619,454 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+484
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Day Dataset 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+54,579 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1,217,890 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+17
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{small}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+Environment
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{small}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Intel(R) Xeon(R) E5506 CPU (2.13GHz) 
+\end_layout
+
+\begin_layout Itemize
+12GB memory 
+\end_layout
+
+\begin_layout Itemize
+10,000RPM sever-level hard disks 
+\end_layout
+
+\begin_layout Itemize
+Linux 2.6.32 x86_64 
+\end_layout
+
+\begin_layout Itemize
+Jre 1.7.0_4 64-Bit 
+\end_layout
+
+\end_deeper
+\begin_layout Block
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{small}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Effectiveness
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Effectiveness
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename exp1.png
+	width 6cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Effectiveness
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename exp2.png
+	width 6cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Effciency
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Index Creation and Size
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+Index Creation
+\end_layout
+
+\end_inset
+
+For Year Dataset, the index creation time of FMI and CFMI is 72 minutes and 127 minutes, respectively.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+Index Size
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename exp3.png
+	width 5cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Effciency of MFP-Search
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename exp4.png
+	width 7cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Note Note
+status closed
+
+\begin_layout Standard
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Effciency
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename exp5.png
+	width 10cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename exp6.png
+	width 10cm
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+AtBeginSection
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+Q&
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{}
+\end_layout
+
+\end_inset
+
+A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Q&
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{}
+\end_layout
+
+\end_inset
+
+A
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+color{blue}
+\end_layout
+
+\end_inset
+
+
+\size huge
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Any Questions?
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Section
+
+\begin_inset Argument 999
+status collapsed
+
+
+\begin_layout Standard
+End
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+End
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+color{blue}
+\end_layout
+
+\end_inset
+
+
+\size huge
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Thanks For Attention!
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_body
+\end_document
