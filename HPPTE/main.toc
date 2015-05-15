@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{Overview}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Abstract}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Background}{4}{0}{1}
+\beamer@sectionintoc {2}{Data Set}{5}{0}{2}
+\beamer@sectionintoc {3}{Method}{9}{0}{3}
+\beamer@subsectionintoc {3}{1}{Simple approach}{10}{0}{3}
+\beamer@subsectionintoc {3}{2}{Improvement method}{13}{0}{3}

@@ -1,0 +1,76 @@
+\documentclass[mathserif]{beamer}
+
+\mode<presentation> {
+	\usetheme{Berkeley}
+	\usecolortheme{default}
+}
+
+\usepackage{xeCJK}
+\setCJKmainfont{楷体}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{longtable}
+
+\usepackage{amsmath,amssymb}
+
+%\usepackage{syntonly}
+%\syntaxonly
+
+\setbeamercovered{transparent}
+%\logo{\includegraphics[height=1.58cm]{./logo.jpg}}
+
+\title[HPPTE]{Hourly Pedestrian Population Trends Estimation using Location Data from Smartphones
+Dealing with Temporal and Spatial Sparsity \thanks{powered by pandoc and \XeLaTeX}}
+
+\author{Presented By: Ziyang Chen}
+\institute[FDU]
+{
+	Fudan University\\
+	\medskip
+	\textit{13307130148@fudan.edu.cn}
+}
+\date{\today}
+
+\begin{document}
+\newtheorem{property}[theorem]{\textsc{Property}}
+\newtheorem{defination}[theorem]{\textsc{Defination}}
+\newtheorem{theore}[theorem]{\textsc{Theorem}}
+\newtheorem{lemm}[theorem]{\textsc{Lemma}}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\AtBeginSection{
+	\begin{frame}
+	\frametitle{Outline}
+	\tableofcontents[currentsection, hideothersubsections]
+	\end{frame}
+}
+
+\include{pre}
+
+\AtBeginSection{}
+
+\section[Q\&{}A]{}
+\begin{frame}{Q\&{}A}
+\begin{center}
+  \color{blue}\huge{Any Questions?}
+\end{center}
+\end{frame}
+
+\section[End]{}
+\begin{frame}{End}
+\begin{center}
+  \color{blue}\huge{Thanks For Attention!}
+\end{center}
+\end{frame}
+
+\end{document}
+
