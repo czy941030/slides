@@ -6,3 +6,9 @@
 \beamer@sectionintoc {3}{Method}{9}{0}{3}
 \beamer@subsectionintoc {3}{1}{Simple approach}{10}{0}{3}
 \beamer@subsectionintoc {3}{2}{Improvement method}{13}{0}{3}
+\beamer@sectionintoc {4}{Experiment}{19}{0}{4}
+\beamer@subsectionintoc {4}{1}{Reference data}{20}{0}{4}
+\beamer@subsectionintoc {4}{2}{Evaluation metrics}{24}{0}{4}
+\beamer@subsectionintoc {4}{3}{Comparative approach}{25}{0}{4}
+\beamer@subsectionintoc {4}{4}{Result}{26}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{29}{0}{5}
